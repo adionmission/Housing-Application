@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<title>Housing App</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.0.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@latest"></script>
+<body>
+
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block w3-padding" style="width:25%">
+    <h3 class="w3-bar-item">Training Status</h3>
+    <pre style="overflow-x: auto; border-radius:0;"><em id="model-status">Loading data...</em></pre>
+    <h3 class="w3-bar-item">Testing Status</h3>
+    <pre style="overflow-x: auto; border-radius:0;"><em id="testing-status">Not yet tested</em></pre>
+    <br>
+    <button autocomplete="off" id="train-button" class="btn btn-default" disabled onclick="train()">Train New Model</button>
+    <button autocomplete="off" id="test-button" class="btn btn-default" disabled onclick="test()">Test Model</button>
+    <br>
+    <br>
+    <button autocomplete="off" id="load-button" class="btn btn-default" disabled onclick="load()">Load Model</button>
+    <button autocomplete="off" id="save-button" class="btn btn-default" disabled onclick="save()">Save Model</button>
+    <br>
+    <br>
+    <h3 class="w3-bar-item">Prediction</h3>
+    <label>Square feet of living space:</label>
+    <div class="form-group">
+        <input type="number" class="form-control" id="prediction-input" placeholder="2000" style="border-radius:0; height:43px;">
+    </div>
+    <button autocomplete="off" id="predict-button" class="btn btn-default" disabled onclick="predict()">Predict house price</button>
+    <br>
+    <br>
+    <p><strong id="prediction-output"></strong></p>
+</div>
+
+<!-- Page Content -->
+<div style="margin-left:25%">
+    <div class="w3-container w3-orange">
+    <h1><b>HOUSING DASHBOARD</b><span class="w3-right"><i class="fa fa-user"></i> Aditya Kakde</span></h1>
+    </div>
+    <div class="container w3-padding">
+        <div class="row">
+            <div class="col-sm-7 w3-padding">
+                <div id="plt2" style="width:650px; max-width:650px; height:200px; max-height:200px;"></div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="plt3" style="width:310px; max-width:310px; height:200px; max-height:200px;"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div id="plt4" style="width:310px; max-width:310px; height:200px; max-height:200px;"></div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="plt5" style="width:650px; max-width:650px; height:200px; max-height:200px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5 w3-padding">
+                <div id="plt1"></div>
+                <br>
+                <div id="plt7" style="width:450px; max-width:450px;"></div>
+                <br>
+                <div id="plt6" style="width:450px; max-width:450px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let model = null;
+    let points;
+    let normalisedFeature, normalisedLabel;
+    let trainingFeatureTensor, testingFeatureTensor, trainingLabelTensor, testingLabelTensor;
+</script>
+<script src="/graphs/graph1.js"></script>
+<script src="/graphs/graph2.js"></script>
+<script src="/graphs/graph3.js"></script>
+<script src="/graphs/graph4.js"></script>
+<script src="/graphs/graph5.js"></script>
+<script src="/predictionlines/plotPredictionLine1.js"></script>
+<script src="/normalizations/normalize.js"></script>
+<script src="/normalizations/denormalize.js"></script>
+<script src="/models/model.js"></script>
+<script src="/models/trainModel.js"></script>
+<script src="/onloads/predict.js"></script>
+<script src="/onloads/save.js"></script>
+<script src="/onloads/load.js"></script>
+<script src="/onloads/test.js"></script>
+<script src="/onloads/train.js"></script>
+<script src="/src/index.js"></script>
+</body>
+</html>
